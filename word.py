@@ -1,30 +1,36 @@
 class word:
-    _Lewis_Carroll_distance = 0
-    _Different_letters = 0
-    _new_word = ""
+    Lewis_Carroll_distance = 0
+    Different_letters = 0
+    new_word = ""
 
     def __lt__(self, other):
-        if (word._Lewis_Carroll_distance + word._Different_letters) < (other._Lewis_Carroll_distance + other._Different_letters):
+        if (word.Lewis_Carroll_distance + word.Different_letters) < (other.Lewis_Carroll_distance + other.Different_letters):
             return True
-        elif (word._Lewis_Carroll_distance + word._Different_letters) == (other._Lewis_Carroll_distance + other._Different_letters):
-            if word._Lewis_Carroll_Distance < other._Lewis_Carroll_Distance:
+        elif (word.Lewis_Carroll_distance + word.Different_letters) == (other.Lewis_Carroll_distance + other.Different_letters):
+            if word.Lewis_Carroll_distance < other.Lewis_Carroll_distance:
                 return True
         return False
 
     def __eq__(self, other):
-        if word._Lewis_Carroll_distance == other._Lewis_Carroll_distance and word._Different_letters == other._Different_letters:
+        if word.Lewis_Carroll_distance == other.Lewis_Carroll_distance and word.Different_letters == other.Different_letters:
             return True
         return False
     
-    def get_LCD():
-        return word._Lewis_Carroll_distance
+    def get_LCD(self):
+        return word.Lewis_Carroll_distance
     
     def set_LCD(self, x):
-        word._Lewis_Carroll_distance = x
+        word.Lewis_Carroll_distance = x
     
-    def get_diff_letters():
-        return word._Different_letters
+    def get_diff_letters(self):
+        return word.Different_letters
     
     def set_diff_letters(self, x):
-        word._Different_letters = x
+        word.Different_letters = x
+
+    def get_new_word(self):
+        return word.new_word
+
+    def set_new_word(self, x):
+        word.new_word = x
     
