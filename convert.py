@@ -1,15 +1,14 @@
 from queue import PriorityQueue
 from word import word
-from english_words import get_english_words_set
 
 def convert(s1, s2, wordset):
     convert_list = list()
     if s1 == s2:
-        return convert_list
+        return "Entered words already equal each other"
     
     if len(s1) != len(s2):
-        return convert_list
-    
+        return "Entered words are different lengths, conversion is not possible"
+
     priority_queue = PriorityQueue(maxsize=0)
     word_dict = dict()
     word_dict[s1] = "///"
@@ -21,13 +20,14 @@ def convert(s1, s2, wordset):
 
     while(while_bool):
         if priority_queue.qsize() == 0:
-            return convert_list
+            return "Conversion is not possible"
         
         popped_from_queue = priority_queue.get()
         curr_LCD = popped_from_queue.get_LCD()
         before_permutations = popped_from_queue.get_new_word()
         mutate_new_word = popped_from_queue.get_new_word()
-        
+
+        #Run through all permutations of s1 and add them to a queue, keep track of seen words using a dictionary to account for duplicates
         for i in range(len(before_permutations)):
             if outer_bool:
                 break
@@ -47,7 +47,7 @@ def convert(s1, s2, wordset):
                     while_bool = False
                     outer_bool = True
                     break
-                elif (mutate_new_word in wordset) and (mutate_new_word not in word_dict):
+                elif (mutate_new_word in wordset and mutate_new_word not in word_dict):
                     word_dict[mutate_new_word] = before_permutations
                     word_obj = word()
                     word_obj.set_new_word(mutate_new_word)
@@ -67,11 +67,7 @@ def convert(s1, s2, wordset):
 
     return convert_list
 
-wordset = get_english_words_set(['web2'], lower=True)
-
-user_word = input("Enter word 1: ")
-user_word2 = input("Enter word 2: ")
-print(convert(user_word, user_word2, wordset))    
+   
 
     
     
